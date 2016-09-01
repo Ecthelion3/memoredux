@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 
 // Components
+import WhoIsPlaying from './containers/WhoIsPlaying'
 
 // Material UI Components
 import mui from 'material-ui';
@@ -31,23 +32,7 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <h1>Memory</h1>
-          <div style={{ border: '1px solid #f00'}}>
-            <h2>Who's Playing?</h2>
-            <div>
-              <button>Pick Color</button>
-              <input type="text" placeholder="Player name..." />
-            </div>
-            <div>
-              <button>Pick Color</button>
-              <input type="text" placeholder="Player name..." />
-            </div>
-            <div>
-              <button>More Players</button>
-            </div>
-            <div>
-              <button>Start Playing</button>
-            </div>
-          </div>
+          <WhoIsPlaying />
         </div>
       </MuiThemeProvider>
     )
