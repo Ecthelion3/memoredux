@@ -14,7 +14,14 @@ class WhoIsPlaying extends Component {
   }
 
   createPlayer(player) {
+    if (this.props.players.length == 3) return
     this.props.addPlayer(player)
+  }
+
+  renderEmptyPlayer() {
+    const { players } = this.props
+    if (players.length == 3) return
+    return this.renderPlayer({}, players.length)
   }
 
   render() {
@@ -24,10 +31,7 @@ class WhoIsPlaying extends Component {
       <div style={{ border: '1px solid #f00'}}>
         <h2>Who's Playing?</h2>
         { players.map(this.renderPlayer.bind(this)) }
-        { this.renderPlayer({}, players.length) }
-        <div>
-          <button>More Players</button>
-        </div>
+        { this.renderEmptyPlayer() }
         <div>
           <button>Start Playing</button>
         </div>
