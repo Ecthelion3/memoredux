@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import addPlayer from '../actions/add-player'
 import NewPlayer from '../components/NewPlayer'
 
+const MAX_PLAYERS = 3
+
 class WhoIsPlaying extends Component {
   renderPlayer(player, index) {
     const { name, color } = player
@@ -13,14 +15,19 @@ class WhoIsPlaying extends Component {
       { ...player } />
   }
 
+  maxPlayersReached() {
+    return (this.props.players.length === MAX_PLAYERS)
+  }
+
   createPlayer(player) {
-    if (this.props.players.length == 3) return
+    if (this.maxPlayersReached()) return
     this.props.addPlayer(player)
   }
 
   renderEmptyPlayer() {
     const { players } = this.props
-    if (players.length == 3) return
+    if (this.maxPlayersReached()) return
+
     return this.renderPlayer({}, players.length)
   }
 
