@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 
 class NewPlayer extends Component {
-  createPlayer(event) {
+  updatePlayer(event) {
     if (event.keyCode !== 13) return
 
     const name = this.refs.playerName.value
-    this.props.onChange({ name })
+    const { index } = this.props
+    this.props.onChange({ name }, index)
   }
 
   render() {
@@ -18,13 +19,14 @@ class NewPlayer extends Component {
           placeholder="Player name..."
           ref="playerName"
           defaultValue={ name }
-          onKeyUp={ this.createPlayer.bind(this) } />
+          onKeyUp={ this.updatePlayer.bind(this) } />
       </div>
     )
   }
 }
 
 NewPlayer.propTypes = {
+  index: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 }
 

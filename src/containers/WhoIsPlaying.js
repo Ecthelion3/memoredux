@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import addPlayer from '../actions/add-player'
+import updatePlayer from '../actions/update-player'
 import NewPlayer from '../components/NewPlayer'
 
 const MAX_PLAYERS = 3
@@ -11,7 +12,8 @@ class WhoIsPlaying extends Component {
 
     return <NewPlayer
       key={index}
-      onChange={ this.createPlayer.bind(this) }
+      index={index}
+      onChange={ this.updatePlayer.bind(this) }
       { ...player } />
   }
 
@@ -22,6 +24,12 @@ class WhoIsPlaying extends Component {
   createPlayer(player) {
     if (this.maxPlayersReached()) return
     this.props.addPlayer(player)
+  }
+
+  updatePlayer(player, index) {
+    const storeExistingPlayer = this.props.updatePlayer
+    if (this.props.players[index]) return storeExistingPlayer(player, index)
+    this.createPlayer(player)
   }
 
   renderEmptyPlayer() {
@@ -56,6 +64,7 @@ const mapStateToProps = (state) => {
 WhoIsPlaying.propTypes = {
   players: PropTypes.array.isRequired,
   addPlayer: PropTypes.func.isRequired,
+  updatePlayer: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, { addPlayer })(WhoIsPlaying)
+export default connect(mapStateToProps, { addPlayer, updatePlayer })(WhoIsPlaying)
