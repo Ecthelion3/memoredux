@@ -5,6 +5,7 @@ export default function updatePlayers( state = [], { type, payload } ) {
   switch (type) {
     case ADD_PLAYER :
       return state.concat([ payload ])
+      console.log(state)
 
     case UPDATE_PLAYER :
       const { index, name, color } = payload
