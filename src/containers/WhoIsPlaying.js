@@ -39,6 +39,13 @@ class WhoIsPlaying extends Component {
     return this.renderPlayer({}, players.length)
   }
 
+  checkPlayers() {
+    const { players } = this.props
+    if (players.length < 2) return
+    console.log('Game can start')
+    this.props.onChange()
+  }
+
   render() {
     const { players } = this.props
 
@@ -48,7 +55,7 @@ class WhoIsPlaying extends Component {
         { players.map(this.renderPlayer.bind(this)) }
         { this.renderEmptyPlayer() }
         <div>
-          <button>Start Playing</button>
+          <button type="button" onClick={this.checkPlayers.bind(this)}>Start Playing</button>
         </div>
       </div>
     )

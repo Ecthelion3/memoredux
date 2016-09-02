@@ -27,12 +27,20 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends Component {
+  createGame() {
+    console.log('Create Game')
+  }
+
+  // checkPlayers() {
+  //   return <WhoIsPlaying onChange={this.createGame}/>
+  // }
+
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <h1>Memory</h1>
-          <WhoIsPlaying />
+          <WhoIsPlaying onChange={this.createGame}/>
         </div>
       </MuiThemeProvider>
     )

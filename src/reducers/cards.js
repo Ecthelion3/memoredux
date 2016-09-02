@@ -1,4 +1,4 @@
-import { CREATE_GAME } from '../actions/create-player'
+import { CREATE_GAME } from '../actions/create-game'
 
 export default function updatePlayers( state = [], { type } ) {
   switch (type) {
