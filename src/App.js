@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 
 // Components
-import WhoIsPlaying from './containers/WhoIsPlaying'
+import Game from './containers/Game'
 
 // Material UI Components
 import mui from 'material-ui';
@@ -27,20 +27,12 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends Component {
-  createGame() {
-    console.log('Create Game')
-  }
-
-  // checkPlayers() {
-  //   return <WhoIsPlaying onChange={this.createGame}/>
-  // }
-
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <h1>Memory</h1>
-          <WhoIsPlaying onChange={this.createGame}/>
+          <Game />
         </div>
       </MuiThemeProvider>
     )
